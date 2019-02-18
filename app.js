@@ -2,7 +2,7 @@ var myApp = angular.module('AngJSApp', []);
 
 
 myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
-    $scope.guessesCount = 4;
+    $scope.guessesCount;
     $scope.displayWord = '';
     $scope.correctGuessesList = [];
     $scope.inCorrectGuessesList = [];
@@ -11,7 +11,7 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeou
     };
     var selectedWord = '';
     $scope.title = 'HangMan Game';
-    var hangmanList = ['cat', 'mat', 'rat', 'tea'];
+    var hangmanList = ['cat', 'mat', 'rat', 'tea', 'act','max','min','cup','off'];
 
 
     $scope.check = function () {
@@ -48,13 +48,13 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeou
         }
         $scope.guessValue.letter = '';
         if ($scope.guessesCount === 0) {
-            alert('You Lost!!!')
+            alert('Ohhh You Lost!!!')
             $timeout(function () {
                 newGame();
             }, 200);
         }
         if ($scope.displayWord.indexOf('*') === -1) {
-            alert('Yeah you Won!!!!');
+            alert('Yeah you Won!!!');
             $timeout(function () {
                 newGame();
             }, 200);
@@ -62,7 +62,7 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeou
     }
 
     var newGame = function () {
-        $scope.guessesCount = 4;
+        $scope.guessesCount;
         $scope.displayWord = '';
         $scope.correctGuessesList = [];
         $scope.inCorrectGuessesList = [];
@@ -73,6 +73,7 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeou
             tempWord += '*';
         }
         $scope.displayWord = tempWord;
+        $scope.guessesCount = selectedWord.length + 1;
     }
 
     var selectRandomWord = function () {
