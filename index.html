@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>HangMan</title>
+    <link type="fa fa-thumbs-o-up" href="fa fa-thumbs-o-up">
+    <script src="//code.angularjs.org/1.6.0/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div ng-app="AngJSApp" ng-controller="HangManCtrl">
+        <span style="font-size:48px;color:orange;"><strong>{{title}}</strong></span>
+        <div class="incorrectGuesses">
+            Guess Left : <span>{{guessesCount}}</span>
+        </div>
+        <div style="font-size:48px;color:blue">
+            {{displayWord}}
+        </div>
+        <div>
+            <i class="fa fa-thumbs-o-up" style="font-size:48px;color:darkgreen"></i>
+            <strong><span ng-repeat="guess in correctGuessesList">{{guess}}</span></strong>
+        </div>
+        <div class="gap"></div>
+        <div>
+            <i class="fa fa-thumbs-o-down" style="font-size:48px;color:red"></i>
+            <strong><span ng-repeat="guess in inCorrectGuessesList">{{guess}}</span></strong>
+        </div>
+        <div>
+            <input type="text" ng-model="guessValue.letter" placeholder="Enter Text">
+
+            <input type="submit" value="Go" ng-click="check()" ng-disabled="!guessesCount">
+        </div>
+    </div>
+</body>
+
+</html>
