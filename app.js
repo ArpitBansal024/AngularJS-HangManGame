@@ -11,7 +11,7 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeou
     };
     var selectedWord = '';
     $scope.title = 'HangMan Game';
-    var hangmanList = ['cat', 'mat', 'rat', 'tea', 'act','max','min','cup','off'];
+    var hangmanList = ['cat', 'mat', 'rat', 'tea','max','min'];
 
 
     $scope.check = function () {
