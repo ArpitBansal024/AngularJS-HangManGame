@@ -1,7 +1,7 @@
-var myApp = angular.module('AngJSApp', []);
+var myApp = angular.module('AngJSApp', ['ui.bootstrap']);
 
 
-myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
+myApp.controller('HangManCtrl', ['$scope', '$timeout', '$uibModal', function ($scope, $timeout, $uibModal) {
     $scope.guessesCount;
     $scope.displayWord = '';
     $scope.correctGuessesList = [];
@@ -11,7 +11,7 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeou
     };
     var selectedWord = '';
     $scope.title = 'HangMan Game';
-    var hangmanList = ['cat', 'mat', 'rat', 'tea','max','min'];
+    var hangmanList = ['cat', 'mat', 'rat', 'tea', 'max', 'min'];
 
 
     $scope.check = function () {
@@ -48,13 +48,36 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeou
         }
         $scope.guessValue.letter = '';
         if ($scope.guessesCount === 0) {
-            alert('Ohhh You Lost!!!')
+            Swal.fire({
+                title: 'Ohhh You Lost!!!',
+                width: 600,
+                padding: '3em',
+                background: '#fff url(images/trees.png)',
+                backdrop: `
+    rgba(0,0,123,0.4)
+    url("images/nyan-cat.gif")
+    center left
+    no-repeat
+  `
+            });
             $timeout(function () {
                 newGame();
             }, 200);
         }
         if ($scope.displayWord.indexOf('*') === -1) {
-            alert('Yeah you Won!!!');
+            // alert('Yeah you Won!!!');
+            Swal.fire({
+                title: 'Yeah you Won!!!',
+                width: 600,
+                padding: '3em',
+                background: '#fff url(images/trees.png)',
+                backdrop: `
+    rgba(0,0,123,0.4)
+    url("images/nyan-cat.gif")
+    center left
+    no-repeat
+  `
+            });
             $timeout(function () {
                 newGame();
             }, 200);
@@ -79,6 +102,12 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', function ($scope, $timeou
     var selectRandomWord = function () {
         var index = Math.round(Math.random() * hangmanList.length);
         return hangmanList[index];
+    }
+
+    $scope.getkeys = function (e) {
+        if ($scope.guessValue.letter.length > 1) {
+            $scope.guessValue.letter = $scope.guessValue.letter[0];
+        }
     }
 
     newGame();
