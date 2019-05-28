@@ -1,7 +1,26 @@
 var myApp = angular.module('AngJSApp', ['ui.bootstrap']);
 
 
-myApp.controller('HangManCtrl', ['$scope', '$timeout', '$uibModal', function ($scope, $timeout, $uibModal) {
+
+myApp.directive('disableRightClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            element.bind('contextmenu', function (e) {
+                e.preventDefault();
+            })
+        }
+    }
+});
+
+myApp.constant('config', {  
+appName: 'HangMan',  
+appVersion: '1.5'  
+});
+
+myApp.controller('HangManCtrl', ['$scope', '$timeout', '$uibModal','config', function ($scope, $timeout, $uibModal,config) {
+    $scope.ApplicationName = config.appName;
+    $scope.Version = config.appVersion; 
     $scope.guessesCount;
     $scope.displayWord = '';
     $scope.correctGuessesList = [];
@@ -82,6 +101,7 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', '$uibModal', function ($s
                 newGame();
             }, 200);
         }
+        angular.element("#letter").focus();
     }
 
     var newGame = function () {
@@ -105,8 +125,13 @@ myApp.controller('HangManCtrl', ['$scope', '$timeout', '$uibModal', function ($s
     }
 
     $scope.getkeys = function (e) {
-        if ($scope.guessValue.letter.length > 1) {
-            $scope.guessValue.letter = $scope.guessValue.letter[0];
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
+            if ($scope.guessValue.letter.length > 1) {
+                $scope.guessValue.letter = $scope.guessValue.letter[0];
+            }
+        }
+        else {
+            $scope.guessValue.letter='';
         }
     }
 

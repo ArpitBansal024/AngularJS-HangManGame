@@ -1,4 +1,5 @@
 <html>
+<link rel="icon" href="images/hangman.png" type="image/x-icon">
 
 <head>
     <title>HangMan</title>
@@ -12,30 +13,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
-    <div ng-app="AngJSApp" ng-controller="HangManCtrl" ng-cloak>
+<body class="background">
+    <div ng-app="AngJSApp" ng-controller="HangManCtrl" disable-right-click ng-cloak>
         <span style="font-size:48px;color:orange;"><strong>{{title}}</strong></span>
-        <div class="incorrectGuesses">
+        <div class="incorrectGuesses" style="font-size:32px;color:white">
             Guess Left : <span>{{guessesCount}}</span>
         </div>
-        <div style="font-size:48px;color:blue">
+        <div style="font-size:48px;color:chartreuse">
             {{displayWord}}
         </div>
         <div>
-            <i class="fa fa-thumbs-o-up" style="font-size:48px;color:darkgreen"></i>
-            <strong><span ng-repeat="guess in correctGuessesList">{{guess}}</span></strong>
+            <i class="fa fa-thumbs-o-up" style="font-size:60px;color:darkgreen"></i>
+            <strong><span style="font-size:32px;color:white" ng-repeat="guess in correctGuessesList">{{guess}}</span></strong>
         </div>
         <div class="gap"></div>
         <div>
-            <i class="fa fa-thumbs-o-down" style="font-size:48px;color:red"></i>
-            <strong><span ng-repeat="guess in inCorrectGuessesList">{{guess}}</span></strong>
+            <i class="fa fa-thumbs-o-down" style="font-size:60px;color:red"></i>
+            <strong><span style="font-size:32px;color:white" ng-repeat="guess in inCorrectGuessesList">{{guess}}</span></strong>
         </div>
         <div>
-            <input type="text" ng-model="guessValue.letter" placeholder="Enter Text" ng-keyup="getkeys(this)">
+            <input type="text" ng-model="guessValue.letter" id="letter" placeholder="Enter Text" ng-keyup="getkeys(this)">
 
             <input type="submit" value="Go" ng-click="check()" ng-disabled="!guessesCount">
         </div>
+        <footer>
+            <p><strong>{{ApplicationName}} @Version: {{Version}}</strong></p>
+        </footer>
     </div>
 </body>
 
 </html>
+<style>
+.background{
+  background: url(images/background_Image.jpg);
+  background-repeat: no-repeat;
+  background-size: 1366px 647px;
+}
+</style>
