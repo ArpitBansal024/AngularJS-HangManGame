@@ -1,7 +1,5 @@
 var myApp = angular.module('AngJSApp', ['ui.bootstrap']);
 
-
-
 myApp.directive('disableRightClick', function () {
     return {
         restrict: 'A',
